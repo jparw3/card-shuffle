@@ -47,13 +47,12 @@ export default function Home() {
 
   const [isRunning, setIsRunning] = useState(false)
   const [shuffleCount, setShuffleCount] = useState(0)
-  const [matchFound, setMatchFound] = useState(false)
-  const [originalDeck, setOriginalDeck] = useState<string[]>([])
-  const [currentDeck, setCurrentDeck] = useState<string[]>([])
+  // const [, setMatchFound] = useState(false)
+  // const [, setOriginalDeck] = useState<string[]>([])
+  // const [, setCurrentDeck] = useState<string[]>([])
   const originalDeckRef = useRef<string>('')
   const { elapsedTime, startTimer, stopTimer } = useElapsedTime()
   const [matchMessage, setMatchMessage] = useState<string | null>(null)
-  const [consoleMessages, setConsoleMessages] = useState<string[]>([])
 
   function shuffleDeck(deck: string[]): string[] {
     const shuffled = [...deck]
@@ -68,14 +67,13 @@ export default function Home() {
     if (isRunning) return
 
     setIsRunning(true)
-    setMatchFound(false)
+    // setMatchFound(false)
     setShuffleCount(0)
     setMatchMessage(null)
-    setConsoleMessages([])
     startTimer()
 
     const newOriginalDeck = shuffleDeck(generateDeck())
-    setOriginalDeck(newOriginalDeck)
+    // setOriginalDeck(newOriginalDeck)
     originalDeckRef.current = newOriginalDeck.join(',')
 
     const worker = new Worker(
@@ -85,7 +83,7 @@ export default function Home() {
     worker.onmessage = (event) => {
       const { shuffledDeck, count } = event.data
       setShuffleCount(count)
-      setCurrentDeck(shuffledDeck)
+      // setCurrentDeck(shuffledDeck)
 
       const timestamp = new Date().toLocaleTimeString()
       const allCards = shuffledDeck.join(', ')
@@ -95,7 +93,7 @@ export default function Home() {
       if (shuffledDeck.join(',') === originalDeckRef.current) {
         worker.terminate()
         setIsRunning(false)
-        setMatchFound(true)
+        // setMatchFound(true)
         setMatchMessage(`Match found! Time taken: ${elapsedTime.toFixed(2)} seconds`)
         stopTimer()
       }

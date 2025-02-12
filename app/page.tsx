@@ -11,8 +11,6 @@ import NumberFlow, {continuous} from '@number-flow/react'
 const SIDE_OVERLAY_STYLE =
   'pointer-events-none fixed z-10 from-white to-transparent backdrop-blur-[1px]'
 
-export const runtime = 'experimental-edge'
-
 export default function Home() {
   function generateDeck(): string[] {
     const suits = ['♠', '♥', '♦', '♣']

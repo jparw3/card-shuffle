@@ -1,14 +1,7 @@
-import { Inter } from "next/font/google"
-import localFont from "next/font/local"
 import clsx from "clsx"
+import { Inter } from "next/font/google"
 import "./globals.css"
 
-const satoshi = localFont({
-  src: "../public/_static/Satoshi-Variable.woff2",
-  variable: "--font-satoshi",
-  weight: "400 600",
-  display: "swap",
-})
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +11,7 @@ const inter = Inter({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={clsx(satoshi.variable, inter.variable)}>
+    <html lang="en" className={clsx(inter.variable)}>
       <body
         className="bg-gray-100 antialiased overscroll-none h-screen w-screen relative overflow-hidden"
         suppressHydrationWarning
